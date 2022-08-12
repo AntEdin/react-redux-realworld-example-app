@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package*.json /app/
 RUN npm install
 COPY ./ /app/
-RUN npm build
+RUN npm run-script build
 
 FROM nginx:latest
 COPY --from=app-img /app/build /usr/share/nginx/html
