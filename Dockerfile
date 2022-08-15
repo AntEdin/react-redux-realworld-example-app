@@ -7,4 +7,4 @@ RUN npm run-script build
 
 FROM nginx:latest
 COPY --from=app-img /app/build /usr/share/nginx/html
-CMD ["nginx", "-g", "deamon off;"]
+CMD ["nginx", "-g", "daemon off;"]
