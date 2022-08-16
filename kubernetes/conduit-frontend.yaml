@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conduit-frontend
+spec:
+  selector:
+    matchLabels:
+      app: conduit-frontend
+  template:
+    metadata:
+      labels:
+        app: conduit-frontend
+    spec:
+      containers:
+      - name: conduit-frontend
+        image: antcolonydevops/conduit-frontend
+        ports:
+        - containerPort: 80 
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: conduit-frontend
+spec:
+  selector:
+    app: conduit-frontend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    name: http
